@@ -1,0 +1,30 @@
+name: Geri Sayım Tweeti
+
+on:
+  schedule:
+    - cron: '30 13 * * *'  # Türkiye saatiyle 16:30 (UTC+3)
+  workflow_dispatch:
+
+jobs:
+  tweet:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Kodu repodan çek
+      uses: actions/checkout@v3
+
+    - name: Python kur
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.10'
+
+    - name: Gerekli kütüphaneleri yükle
+      run: pip install tweepy
+
+    - name: Tweet at
+      run: python tweet.py
+      env:
+        TWITTER_API_KEY: ${{ secrets.TWITTER_API_KEY }}
+        TWITTER_API_SECRET: ${{ secrets.TWITTER_API_SECRET }}
+        TWITTER_ACCESS_TOKEN: ${{ secrets.TWITTER_ACCESS_TOKEN }}
+        TWITTER_ACCESS_TOKEN_SECRET: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
