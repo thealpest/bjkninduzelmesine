@@ -1,6 +1,7 @@
 import os
 from datetime import datetime, timedelta, timezone
 import tweepy
+from dateutil.relativedelta import relativedelta
 
 # Twitter API kimlik bilgileri ve Bearer Token
 bearer_token = os.environ["BEARER_TOKEN"]
@@ -20,22 +21,33 @@ client = tweepy.Client(
 
 # Geri sayım tarihi (2 Temmuz 2028, 16:30 GMT+3)
 deadline = datetime(2028, 7, 2, 16, 30, tzinfo=timezone(timedelta(hours=3)))
-
-# Şu anki zaman (GMT+3)
 now = datetime.now(timezone(timedelta(hours=3)))
 
-# Kalan gün sayısı
-days_left = (deadline.date() - now.date()).days
-
-# Tweet metni
-if days_left > 0:
-    tweet = f"{days_left} gün kaldı."
-elif days_left == 0:
-    tweet = "Bugün!"
-else:
+if now > deadline:
     tweet = "Etkinlik sona erdi."
+else:
+    diff = relativedelta(deadline, now)
+    total_days = (deadline.date() - now.date()).days
 
-# Tweet atma işlemi
+    years = diff.years
+    months = diff.months
+    days_left = diff.days
+
+    weeks = days_left // 7
+    days = days_left % 7
+
+    parts = []
+    if years > 0:
+        parts.append(f"{years} yıl")
+    if months > 0:
+        parts.append(f"{months} ay")
+    if weeks > 0:
+        parts.append(f"{weeks} hafta")
+    if days > 0:
+        parts.append(f"{days} gün")
+
+    tweet = ", ".join(parts) + " kaldı."
+
 try:
     response = client.create_tweet(text=tweet)
     print("Tweet atıldı. Tweet ID:", response.data["id"])
