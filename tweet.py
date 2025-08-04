@@ -16,11 +16,16 @@ client = tweepy.Client(
 now = datetime.now()
 deadline = datetime(2028, 7, 2, 16, 30)
 
-# Farkı hesapla
+# Zaman farkı
 delta = relativedelta(deadline, now)
+total_days = (deadline - now).days
 
-# Tweet metni (tek satır)
-tweet = f"{delta.years} YIL, {delta.months} AY, {delta.days} GÜN kaldı."
+# Çok satırlı tweet metni
+tweet = f"""{delta.years} YIL
+{delta.months} AY
+{delta.days} GÜN kaldı.
+
+({total_days} gün)"""
 
 # Tweet gönder
 response = client.create_tweet(text=tweet)
