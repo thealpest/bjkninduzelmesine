@@ -1,6 +1,8 @@
-name: Tweet Gönder
+name: Günlük Geri Sayım Tweeti
 
 on:
+  schedule:
+    - cron: "30 13 * * *"  # Her gün 13:30 UTC (16:30 GMT+3)
   workflow_dispatch:
 
 jobs:
@@ -26,5 +28,5 @@ jobs:
       - name: Gerekli paketleri yükle
         run: pip install tweepy
 
-      - name: Python scriptini çalıştır
+      - name: Tweet scriptini çalıştır
         run: python tweet.py
