@@ -20,7 +20,7 @@ deadline = datetime(2028, 7, 2, 16, 30)
 delta = relativedelta(deadline, now)
 
 # Tweet metni (tek satır)
-tweet = f"{delta.years} YIL {delta.months} AY {delta.days} GÜN kaldı."
+tweet = f"{delta.years} YIL, {delta.months} AY, {delta.days} GÜN kaldı."
 
 # Tweet gönder
 response = client.create_tweet(text=tweet)
