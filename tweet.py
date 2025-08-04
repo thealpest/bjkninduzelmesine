@@ -44,7 +44,6 @@ else:
     else:
         lines.append("0 GÜN kaldı.")
 
-    lines.append("⏳")
     lines.append(f"({total_days} gün)")
 
     tweet = "\n".join(lines)
