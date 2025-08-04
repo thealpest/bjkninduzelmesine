@@ -3,7 +3,7 @@ from datetime import datetime, timedelta, timezone
 import tweepy
 from dateutil.relativedelta import relativedelta
 
-# Twitter API kimlik bilgileri ve Bearer Token
+# Twitter API kimlik bilgileri
 bearer_token = os.environ["BEARER_TOKEN"]
 consumer_key = os.environ["CONSUMER_KEY"]
 consumer_secret = os.environ["CONSUMER_SECRET"]
@@ -19,7 +19,7 @@ client = tweepy.Client(
     access_token_secret=access_token_secret
 )
 
-# Geri sayım tarihi (2 Temmuz 2028, 16:30 GMT+3)
+# Hedef tarih: 2 Temmuz 2028, saat 16:30 (GMT+3)
 deadline = datetime(2028, 7, 2, 16, 30, tzinfo=timezone(timedelta(hours=3)))
 now = datetime.now(timezone(timedelta(hours=3)))
 
@@ -33,19 +33,18 @@ else:
     months = diff.months
     days = diff.days
 
-    # Satır satır tweet oluştur
+    # Satırları oluştur
     lines = []
     if years > 0:
         lines.append(f"{years} YIL")
     if months > 0:
         lines.append(f"{months} AY")
     if days > 0:
-        lines.append(f"{days} GÜN kaldı ⏳")
+        lines.append(f"{days} GÜN kaldı.")
     else:
-        # Eğer sadece yıl ve ay varsa ve gün 0 ise "0 GÜN kaldı." yazabiliriz
         lines.append("0 GÜN kaldı.")
 
-    lines.append("")  # Boş satır
+    lines.append("⏳")
     lines.append(f"({total_days} gün)")
 
     tweet = "\n".join(lines)
