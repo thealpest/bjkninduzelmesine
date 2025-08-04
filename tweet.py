@@ -40,7 +40,7 @@ else:
     if months > 0:
         lines.append(f"{months} AY")
     if days > 0:
-        lines.append(f"{days} GÜN kaldı.")
+        lines.append(f"{days} GÜN kaldı ⏳")
     else:
         # Eğer sadece yıl ve ay varsa ve gün 0 ise "0 GÜN kaldı." yazabiliriz
         lines.append("0 GÜN kaldı.")
