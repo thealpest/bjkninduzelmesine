@@ -46,7 +46,10 @@ else:
     if days > 0:
         parts.append(f"{days} gün")
 
-    tweet = ", ".join(parts) + " kaldı."
+    first_line = ", ".join(parts) + " kaldı."
+    second_line = f"({total_days} gün)"
+
+    tweet = f"{first_line}\n{second_line}"
 
 try:
     response = client.create_tweet(text=tweet)
