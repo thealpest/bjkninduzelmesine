@@ -20,7 +20,7 @@ client = tweepy.Client(
 )
 
 # Geri sayım tarihi (2 Temmuz 2028, 16:30 GMT+3)
-deadline = datetime(2028, 7, 3, 16, 30, tzinfo=timezone(timedelta(hours=3)))
+deadline = datetime(2028, 7, 2, 16, 30, tzinfo=timezone(timedelta(hours=3)))
 now = datetime.now(timezone(timedelta(hours=3)))
 
 if now > deadline:
@@ -31,25 +31,24 @@ else:
 
     years = diff.years
     months = diff.months
-    days_left = diff.days
+    days = diff.days
 
-    weeks = days_left // 7
-    days = days_left % 7
-
-    parts = []
+    # Satır satır tweet oluştur
+    lines = []
     if years > 0:
-        parts.append(f"{years} yıl")
+        lines.append(f"{years} YIL")
     if months > 0:
-        parts.append(f"{months} ay")
-    if weeks > 0:
-        parts.append(f"{weeks} hafta")
+        lines.append(f"{months} AY")
     if days > 0:
-        parts.append(f"{days} gün")
+        lines.append(f"{days} GÜN kaldı.")
+    else:
+        # Eğer sadece yıl ve ay varsa ve gün 0 ise "0 GÜN kaldı." yazabiliriz
+        lines.append("0 GÜN kaldı.")
 
-    first_line = ", ".join(parts) + " kaldı."
-    second_line = f"({total_days} gün)"
+    lines.append("")  # Boş satır
+    lines.append(f"({total_days} gün)")
 
-    tweet = f"{first_line}\n{second_line}"
+    tweet = "\n".join(lines)
 
 try:
     response = client.create_tweet(text=tweet)
