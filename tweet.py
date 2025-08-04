@@ -18,10 +18,9 @@ deadline = datetime(2028, 7, 2, 16, 30)
 
 # Farkı hesapla
 delta = relativedelta(deadline, now)
-total_days = (deadline.date() - now.date()).days
 
-# Tweet metni
-tweet = f"""{delta.years} YIL {delta.months} AY {delta.days} GÜN kaldı.
+# Tweet metni (tek satır)
+tweet = f"{delta.years} YIL {delta.months} AY {delta.days} GÜN kaldı."
 
 # Tweet gönder
 response = client.create_tweet(text=tweet)
