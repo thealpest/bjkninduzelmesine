@@ -20,7 +20,7 @@ client = tweepy.Client(
 )
 
 # Geri sayım tarihi (2 Temmuz 2028, 16:30 GMT+3)
-deadline = datetime(2028, 7, 2, 16, 30, tzinfo=timezone(timedelta(hours=3)))
+deadline = datetime(2028, 7, 3, 16, 30, tzinfo=timezone(timedelta(hours=3)))
 now = datetime.now(timezone(timedelta(hours=3)))
 
 if now > deadline:
