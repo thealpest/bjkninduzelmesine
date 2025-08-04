@@ -26,7 +26,7 @@ jobs:
           python-version: '3.10'
 
       - name: Gerekli paketleri yükle
-        run: pip install tweepy
+        run: pip install tweepy python-dateutil
 
       - name: Tweet scriptini çalıştır
         run: python tweet.py
