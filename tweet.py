@@ -21,11 +21,9 @@ delta = relativedelta(deadline, now)
 total_days = (deadline - now).days
 
 # Çok satırlı tweet metni
-tweet = f"""{delta.years} YIL
-{delta.months} AY
-{delta.days} GÜN kaldı.
-
-({total_days} gün)"""
+tweet = f"""{delta.years} yıl
+{delta.months} ay
+{delta.days} gün kaldı."""
 
 # Tweet gönder
 response = client.create_tweet(text=tweet)
