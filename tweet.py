@@ -25,7 +25,7 @@ tweet = f"""{delta.years} YIL
 {delta.months} AY
 {delta.days} GÜN kaldı.
 
-({total_days} gün)"""
+⏳ {total_days} gün ⌛️"""
 
 # Tweet gönder
 response = client.create_tweet(text=tweet)
