@@ -2,7 +2,7 @@ name: Günlük Geri Sayım Tweeti
 
 on:
   schedule:
-    - cron: "2 13 * * *"  # Her gün 13:30 UTC (16:30 GMT+3)
+    - cron: "15 13 * * *"  # Her gün 13:15 UTC (16:15 GMT+3)
   workflow_dispatch:
 
 jobs:
